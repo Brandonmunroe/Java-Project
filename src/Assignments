@@ -1,0 +1,29 @@
+Write a function fizzBuzz which takes a single integer argument, it should iterate from 1
+to the number (inclusive). During iteration if the current number is divisible by 3 print
+Fizz, if its divisible by 5 print Buzz, if its divisible by both print FizzBuzz instead otherwise
+just print the current number.
+Example:
+fizzBuzz(15):
+1 2 Fizz 3 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz
+
+
+2. Write a function stepsToZero which takes an integer argument, return the number of
+steps to reduce that argument to zero. In one step if the current value is even the
+number must be divided by 2, otherwise you must decrease it by 1
+Example:
+stepsToZero(30)
+30 -> 15 -> 14 -> 7 -> 6 -> 3 -> 2 -> 1 -> 0
+Answer: 8
+
+3. Write a function powerOfTwo which takes an integer argument, it should return true if
+the number is a power of two and return false if it is not
+Example:
+powerOfTwo(16) -> True
+powerOfTwo(256) -> True
+powerOfTwo(6) -> False
+
+
+Req: input
+
+operators
+output
