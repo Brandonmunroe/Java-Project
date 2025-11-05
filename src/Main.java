@@ -1,29 +1,34 @@
-import java.util.Arrays;
+import java.util.Scanner;
 
-public class Main {
-    public static void sortStudents(Object[][] students) {
-        Arrays.sort(students,
-                (a, b) -> ((Integer) a[1]) - ((Integer) b[1]));
-
-    }
+public class Main
+{
     public static void main(String[] args) {
 
-        Object[][] students = {
+        Scanner input = new Scanner(System.in);
 
-                {"Alice", 85},
 
-                {"Bob", 92},
 
-                {"Charlie", 78}
+        System.out.println("Please Enter your age");
 
-        };
-        sortStudents(students);
-        for (Object[] s : students) {
+        int age = input.nextInt();
 
-            System.out.println(s[0] + " " + s[1]);
+
+
+        if(age >= 18){
+
+            System.out.println("You are an adult.");
+
+        } else if (age >= 13 && age <= 17){
+
+            System.out.println("You are a teenager.");
+
+        } else {
+
+            System.out.println("You are a child.");
 
         }
-
     }
-}
 
+
+
+}
