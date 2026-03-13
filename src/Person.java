@@ -1,13 +1,11 @@
-/* Project: Lab 1
- * Class: Person.java
- * Author: Brandon Munroe
- * Date: February 2, 2026
- * This program reads a family data file, builds a database of people and their relationships,
- *  and prints a selected person’s maternal line, paternal line, children, and sibling information.
- */
+/* Date: February 2, 2026//
+       / * This program reads a family data file, builds a database of people and their relationships,
+       // *  and prints a selected person’s maternal line, paternal line, children, and sibling information.
+        */
 
 
 import java.util.ArrayList;
+
 
 public class Person {
     // Data member
@@ -17,7 +15,7 @@ public class Person {
     ArrayList<Person> children;
 
     //constructor Primary
-    public Person(String name) {
+    public Person(String name, String mother, String father, String children) {
         this.name = name;
         this.mother = null;
         this.father = null;
@@ -78,7 +76,7 @@ public class Person {
 
         return 1 + mother.maternalRecords();
     }
-//Pt B
+    //Pt B
     // Count number of paternal records (self + paternal ancestors)
     public int paternalRecords() {
         if (father == null) {
@@ -137,9 +135,77 @@ public class Person {
         }
     }
 
+    public static void main(String[] args) {
 
+        ArrayList<Person> people = new ArrayList<>();
+
+        // Create people
+        Person henryVII = new Person("Henry VII", null, null);
+        Person elizabethYork = new Person("Elizabeth of York", null, null);
+        Person henryVIII = new Person("Henry VIII", elizabethYork, henryVII);
+        Person mary = new Person("Mary I", null, henryVIII);
+        Person elizabeth = new Person("Elizabeth I", null, henryVIII);
+        Person edward = new Person("Edward VI", null, henryVIII);
+
+        // Add children
+        henryVIII.addChild(mary);
+        henryVIII.addChild(elizabeth);
+        henryVIII.addChild(edward);
+
+        // Add to list
+        people.add(henryVII);
+        people.add(elizabethYork);
+        people.add(henryVIII);
+        people.add(mary);
+        people.add(elizabeth);
+        people.add(edward);
+
+        java.util.Scanner input = new java.util.Scanner(System.in);
+
+        System.out.print("Person's name? ");
+        String searchName = input.nextLine();
+
+        Person target = null;
+
+        for (Person person : people) {
+            if (person.getName().equalsIgnoreCase(searchName)) {
+                target = person;
+                break;
+            }
+        }
+
+        if (target != null) {
+
+            System.out.println("Maternal line:");
+            target.printMaternal();
+
+            System.out.println("Paternal line:");
+            target.printPaternal();
+
+            System.out.println("Children:");
+            target.printChildren();
+
+            System.out.println("Number of Maternal Records: " + target.maternalRecords());
+            System.out.println("Number of Paternal Records: " + target.paternalRecords());
+            System.out.println("Number of Children: " + target.countChildren());
+
+            System.out.println("Number of Siblings: " + target.countSiblings(people));
+
+            System.out.println("Siblings:");
+            ArrayList<String> siblings = target.listOfSiblings(people);
+            for (String s : siblings) {
+                System.out.println(s);
+            }
+
+        } else {
+            System.out.println("Person not found.");
+        }
+
+        input.close();
+    }
 }
 
 
 //How to create an object
 //Person person1 = new Person();
+
